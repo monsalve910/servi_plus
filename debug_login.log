@@ -570,3 +570,122 @@
     [login_time] => 1758978584
 )
 
+2025-09-27 15:24:30 - Inicio de proceso de login
+2025-09-27 15:24:30 - Datos recibidos - Array
+(
+    [documento] => 123
+    [pass_length] => 9
+)
+
+2025-09-27 15:24:30 - SQL ejecutado - SELECT id_empleado, nombre_empleado, documento, pass, rol 
+        FROM empleados 
+        WHERE documento = '123' 
+        LIMIT 1
+2025-09-27 15:24:30 - Resultados encontrados - 1
+2025-09-27 15:24:30 - Datos del usuario - Array
+(
+    [id] => 7
+    [nombre] => pepa
+    [has_pass] => 1
+    [pass_empty] => 
+)
+
+2025-09-27 15:24:30 - Hash almacenado (primeros 20 caracteres) - $2y$10$0FtEptH2QeqRA
+2025-09-27 15:24:31 - Resultado de password_verify - CORRECTO
+2025-09-27 15:24:31 - Login exitoso - sesión iniciada - Array
+(
+    [user_id] => 7
+    [nombre] => pepa
+    [documento] => 123
+    [rol] => 1
+    [acceso] => 1
+    [login_time] => 1758979471
+)
+
+2025-09-27 15:33:21 - Inicio de proceso de login
+2025-09-27 15:33:21 - Datos recibidos - Array
+(
+    [documento] => 123
+    [pass_length] => 9
+)
+
+2025-09-27 15:33:21 - SQL ejecutado - SELECT id_empleado, nombre_empleado, documento, pass, rol 
+        FROM empleados 
+        WHERE documento = '123' 
+        LIMIT 1
+2025-09-27 15:33:21 - Resultados encontrados - 1
+2025-09-27 15:33:21 - Datos del usuario - Array
+(
+    [id] => 7
+    [nombre] => pepa
+    [has_pass] => 1
+    [pass_empty] => 
+)
+
+2025-09-27 15:33:21 - Hash almacenado (primeros 20 caracteres) - $2y$10$0FtEptH2QeqRA
+2025-09-27 15:33:21 - Resultado de password_verify - CORRECTO
+2025-09-27 15:33:21 - Login exitoso - sesión iniciada - Array
+(
+    [user_id] => 7
+    [nombre] => pepa
+    [documento] => 123
+    [rol] => 1
+    [acceso] => 1
+    [login_time] => 1758980001
+)
+
+2025-09-29 00:37:39 - Inicio de proceso de login
+2025-09-29 00:37:39 - Datos recibidos - Array
+(
+    [documento] => 123
+    [pass_length] => 9
+)
+
+2025-09-29 00:37:39 - SQL ejecutado - SELECT id_empleado, nombre_empleado, documento, pass, rol 
+        FROM empleados 
+        WHERE documento = '123' 
+        LIMIT 1
+2025-09-29 00:37:39 - Resultados encontrados - 1
+2025-09-29 00:37:39 - Datos del usuario - Array
+(
+    [id] => 7
+    [nombre] => pepa
+    [has_pass] => 1
+    [pass_empty] => 
+)
+
+2025-09-29 00:37:39 - Hash almacenado (primeros 20 caracteres) - $2y$10$0FtEptH2QeqRA
+2025-09-29 00:37:39 - Resultado de password_verify - INCORRECTO
+2025-09-29 00:37:39 - Verificación de contraseña falló
+2025-09-29 00:37:47 - Inicio de proceso de login
+2025-09-29 00:37:47 - Datos recibidos - Array
+(
+    [documento] => 123
+    [pass_length] => 9
+)
+
+2025-09-29 00:37:47 - SQL ejecutado - SELECT id_empleado, nombre_empleado, documento, pass, rol 
+        FROM empleados 
+        WHERE documento = '123' 
+        LIMIT 1
+2025-09-29 00:37:47 - Resultados encontrados - 1
+2025-09-29 00:37:47 - Datos del usuario - Array
+(
+    [id] => 7
+    [nombre] => pepa
+    [has_pass] => 1
+    [pass_empty] => 
+)
+
+2025-09-29 00:37:47 - Hash almacenado (primeros 20 caracteres) - $2y$10$0FtEptH2QeqRA
+2025-09-29 00:37:47 - Resultado de password_verify - CORRECTO
+2025-09-29 00:37:47 - Login exitoso - sesión iniciada - Array
+(
+    [user_id] => 7
+    [nombre] => pepa
+    [documento] => 123
+    [rol] => 1
+    [acceso] => 1
+    [login_time] => 1759099067
+)
+

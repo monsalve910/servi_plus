@@ -42,7 +42,7 @@
 </head>
 
 <body>
-    <header class="bg-success">
+    <header style="background-color: #6f42c1;">
         <h1 class="text-center text-white py-3">LOGIN</h1>
     </header>
     

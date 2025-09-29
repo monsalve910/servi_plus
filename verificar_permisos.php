@@ -76,7 +76,7 @@ function permisoBadge($cond) {
                         </div>
                     <?php else: ?>
                         <div class="alert alert-secondary text-dark p-3">
-                            <p class="mb-1">Como <strong>Usuario</strong> podés:</p>
+                            <p class="mb-1">Como <strong>Usuario</strong> puedes:</p>
                             <ul class="mb-0">
                                 <li>Ver la lista de empleados</li>
                                 <li>Consultar tus permisos</li>

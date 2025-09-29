@@ -132,8 +132,16 @@ $resultado = $mysql->efectuarConsulta("
                                 <td><?= $fila['telefono'] ?></td>
                                 <td><img src="./assets/fotos_empleados/<?= $fila['foto_empleado'] ?>" width="70" class="img-thumbnail"></td>
                                 <td>
-                                    <a href="./editar.php?id=<?= $fila['id_empleado'] ?>" class="btn btn-sm text-white fw-bold editar-btn" style="background-color: #556b2f;">Editar</a>
-                                    <a href="./eliminar.php?id=<?= $fila['id_empleado'] ?>" class="btn btn-sm text-white fw-bold eliminar-btn" style="background-color: #8b0000;">Eliminar</a>
+                                    <?php if (esAdministrador()): ?>
+                                        <a href="./editar.php?id=<?= $fila['id_empleado'] ?>" class="btn btn-sm text-white fw-bold editar-btn" style="background-color: #556b2f;">Editar</a>
+                                        <a href="./eliminar.php?id=<?= $fila['id_empleado'] ?>" class="btn btn-sm text-white fw-bold eliminar-btn" style="background-color: #8b0000;">Eliminar</a>
+                                    <?php else: ?>
+                                        <div class="alert alert-info">
+                                            <strong>Permisos limitados:</strong> Solo puedes ver la lista de empleados.
+                                            <a href="./verificar_permisos.php" class="btn btn-sm btn-outline-light ms-2">Ver mis permisos</a>
+                                        </div>
+                                    <?php endif; ?>
+
                                 </td>
                             </tr>
                         <?php endwhile; ?>

@@ -96,17 +96,17 @@ class Validador
             return "La contraseña es obligatoria.";
         }
         
-        $tieneLetras = preg_match('/[A-Za-z]/', $password);
+        //$tieneLetras = preg_match('/[A-Za-z]/', $password);
         $tieneNumeros = preg_match('/[0-9]/', $password);
         
         // Información detallada sobre qué falta en la contraseña
         $problemas = [];
-        if (!$tieneLetras) $problemas[] = "letras";
+        //if (!$tieneLetras) $problemas[] = "letras";
         if (!$tieneNumeros) $problemas[] = "números";
         
-        if (!empty($problemas)) {
+       /*  if (!empty($problemas)) {
             return "La contraseña debe contener " . implode(" y ", $problemas) . ".";
-        }
+        } */
         
         if (strlen($password) < 6) {
             return "La contraseña debe tener al menos 6 caracteres (tiene " . strlen($password) . ").";

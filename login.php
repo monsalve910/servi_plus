@@ -86,24 +86,60 @@
             <?php } ?>
             <div class="row justify-content-center">
                 <div class="col-12">
-                    <form method="post" action="./controlador/validarlogin.php">
-                        <div class="mb-3">
-                            <label for="documento" class="form-label fw-bold">Documento</label>
-                            <input type="text" class="form-control" id="documento" name="documento" 
-                                   placeholder="Ingresa tu Documento" required
-                                   pattern="[0-9]+" title="Por favor ingresa solo números">
-                            
-                            <label for="pass" class="form-label mt-3 fw-bold">Contraseña</label>
-                            <input type="password" id="pass" name="pass" class="form-control mb-3" 
-                                   aria-describedby="passwordHelpBlock" required>
-                            
-                            <div id="passwordHelpBlock" class="form-text mb-3">
-                                Tu contraseña debe contener letras y números.
-                            </div>
-                            
-                            <button type="submit" class="btn btn-success w-100 py-2">Iniciar Sesión</button>
-                        </div>
-                    </form>
+                    <form id="formLogin">
+    <div class="mb-3">
+        <label for="documento" class="form-label fw-bold">Documento</label>
+        <input type="text" class="form-control" id="documento" name="documento" 
+               placeholder="Ingresa tu Documento" required
+               pattern="[0-9]+" title="Por favor ingresa solo números">
+
+        <label for="pass" class="form-label mt-3 fw-bold">Contraseña</label>
+        <input type="password" id="pass" name="pass" class="form-control mb-3" required>
+
+        <button type="submit" class="btn btn-success w-100 py-2">Iniciar Sesión</button>
+    </div>
+</form>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+document.querySelector('#formLogin').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+
+    fetch('./controlador/validarlogin.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(r => r.text())
+    .then(resp => {
+        resp = resp.trim();
+        if (resp === "ok") {
+            Swal.fire({
+                icon: 'success',
+                title: 'Bienvenido',
+                text: 'Inicio de sesión exitoso',
+                timer: 1500,
+                showConfirmButton: false
+            }).then(() => {
+                window.location.href = "index.php";
+            });
+        } else if (resp === "error:password") {
+            Swal.fire('Error', 'Contraseña incorrecta', 'error');
+        } else if (resp === "error:usuario") {
+            Swal.fire('Error', 'Usuario no encontrado', 'error');
+        } else if (resp === "error:campos_vacios") {
+            Swal.fire('Atención', 'Completa todos los campos', 'warning');
+        } else {
+            Swal.fire('Error', 'Error desconocido: ' + resp, 'error');
+        }
+    })
+    .catch(() => {
+        Swal.fire('Error', 'No se pudo conectar con el servidor', 'error');
+    });
+});
+</script>
+
                 </div>
             </div>
         </div>

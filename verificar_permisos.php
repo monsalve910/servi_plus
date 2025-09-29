@@ -27,7 +27,7 @@ function permisoBadge($cond) {
     </style>
 </head>
 <body>
-    <div class="container py-4">
+    <div class="container-fluid py-4">
         <div class="row gy-3">
             <div class="col-12 col-md-6">
                 <div class="card card-contrast p-4 shadow-sm">

@@ -41,7 +41,7 @@ $resultado = $mysql->efectuarConsulta($sql);
     <link rel="stylesheet" href="./assets/css/bootstrap.min.css" />
 </head>
 <body>
-    <div class="container mt-5">
+    <div class="container-fluid mt-5">
         <div class="row">
             <div class="col-12">
                 <h1 class="text-center mb-4">Gestión de Roles de Usuario</h1>

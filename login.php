@@ -42,12 +42,12 @@
 </head>
 
 <body>
-    <header style="background-color: #6f42c1;">
-        <h1 class="text-center text-white py-3">LOGIN</h1>
+    <header style="background-color: #008000;">
+        <h1 class="text-center py-3" style:"#212529">LOGIN</h1>
     </header>
     
     <div class="login-wrapper">
-        <div class="container bg-dark-subtle text-dark-emphasis">
+        <div class="container text-dark-emphasis" style="background-color: #f8f9fa;">
             <?php 
             if (isset($_GET['error'])) {
                 $reason = $_GET['reason'] ?? '';
@@ -86,17 +86,16 @@
             <?php } ?>
             <div class="row justify-content-center">
                 <div class="col-12">
-                    <form id="formLogin">
+                    <form id="formLogin" style="background-color: #f8f9fa;">
     <div class="mb-3">
         <label for="documento" class="form-label fw-bold">Documento</label>
         <input type="text" class="form-control" id="documento" name="documento" 
                placeholder="Ingresa tu Documento" required
                pattern="[0-9]+" title="Por favor ingresa solo números">
-
         <label for="pass" class="form-label mt-3 fw-bold">Contraseña</label>
         <input type="password" id="pass" name="pass" class="form-control mb-3" required>
 
-        <button type="submit" class="btn btn-success w-100 py-2">Iniciar Sesión</button>
+        <button type="submit" class=" w-100 py-2" style="background-color: #28a745; color:#212529;">Iniciar Sesión</button>
     </div>
 </form>
 

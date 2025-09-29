@@ -31,18 +31,18 @@ $resultado = $mysql->efectuarConsulta("
 </head>
 
 <body class="text-center">
-    <div class="container-fluid mt-5 text-white" style="background-color: #6f42c1;">
+    <div class="container-fluid mt-5 text-white" style="background-color: #008000;">
         <div class="row text-center">
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <div>
                     <?php if (isset($_SESSION['nombre'])): ?>
-                        <span class="badge text-white" style="background-color: #d4af37;">Usuario: <?php echo $_SESSION['nombre']; ?>
+                        <span class="badge text-white" style="background-color: #007bff;">Usuario: <?php echo $_SESSION['nombre']; ?>
                             (<?php echo esAdministrador() ? 'Administrador' : 'Usuario'; ?>)</span>
                     <?php endif; ?>
                 </div>
-                <h1 class="flex-grow-1">Datos de los Empleados</h1>
+                <h1 class="flex-grow-1" style="color:#212529">Datos de los Empleados</h1>
                 <div>
-                    <a href="logout.php" class="btn btn-sm text-white" style="background-color: #8b0000;">Cerrar Sesión</a>
+                    <a href="logout.php" class="btn btn-sm text-white" style="background-color: #dc3545;">Cerrar Sesión</a>
                 </div>
             </div>
 
@@ -87,12 +87,12 @@ $resultado = $mysql->efectuarConsulta("
                 <div class="btn-toolbar mb-3" role="toolbar">
                     <div class="btn-group me-2" role="group">
                         <a class="btn fw-bold text-white" style="background-color: #28a745;" href="./agregar.php" id="agregar-btn">Agregar</a>
-                        <a class="btn text-white fw-bold" style="background-color: #d4af37;" href="./gestion_roles.php">Gestionar Roles</a>
-                        <a class="btn btn-primary text-white fw-bold" href="./verificar_permisos.php">Ver Permisos</a>
+                        <a class="btn text-white fw-bold" style="background-color: #ffc107;" href="./gestion_roles.php">Gestionar Roles</a>
+                        <a class="btn text-white fw-bold" style="background-color: #007bff;" href="./verificar_permisos.php">Ver Permisos</a>
                     </div>
                     <div class="btn-group me-2" role="group">
-                        <a class="btn text-white fw-bold" style="background-color: #17a2b8;" href="./grafico.html">Dashboard</a>
-                        <a class="btn text-white fw-bold" style="background-color: #2c3e50;" href="./reportes.php">Reportes</a>
+                        <a class="btn text-white fw-bold" style="background-color: #007bff;" href="./grafico.html">Dashboard</a>
+                        <a class="btn text-white fw-bold" style="background-color: #007bff;" href="./reportes.php">Reportes</a>
                     </div>
                 </div>
             <?php else: ?>
@@ -102,7 +102,7 @@ $resultado = $mysql->efectuarConsulta("
                 </div>
             <?php endif; ?>
             <div class="table-responsive">
-                <table id="tablaEmpleados" class="table table-hover table-dark text-center display nowrap responsive" style="width:100%">
+                <table id="tablaEmpleados" class="table table-hover text-center display nowrap responsive" style="width:100%; background-color: #f8f9fa; color:#212529;">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -133,8 +133,8 @@ $resultado = $mysql->efectuarConsulta("
                                 <td><img src="./assets/fotos_empleados/<?= $fila['foto_empleado'] ?>" width="70" class="img-thumbnail"></td>
                                 <td>
                                     <?php if (esAdministrador()): ?>
-                                        <a href="./editar.php?id=<?= $fila['id_empleado'] ?>" class="btn btn-sm text-white fw-bold editar-btn" style="background-color: #556b2f;">Editar</a>
-                                        <a href="./eliminar.php?id=<?= $fila['id_empleado'] ?>" class="btn btn-sm text-white fw-bold eliminar-btn" style="background-color: #8b0000;">Eliminar</a>
+                                        <a href="./editar.php?id=<?= $fila['id_empleado'] ?>" class="btn btn-sm text-white fw-bold editar-btn" style="background-color: #28a745;">Editar</a>
+                                        <a href="./eliminar.php?id=<?= $fila['id_empleado'] ?>" class="btn btn-sm text-white fw-bold eliminar-btn" style="background-color: #dc3545;">Eliminar</a>
                                     <?php else: ?>
                                         <div class="alert alert-info">
                                             <strong>Permisos limitados:</strong> Solo puedes ver la lista de empleados.

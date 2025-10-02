@@ -112,7 +112,7 @@ $departamentos = $mysql->efectuarConsulta("SELECT id_departamento, departamento 
     <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
 </head>
 <body class="p-4">
-    <div class="container">
+    <div class="container text-white" style="background-color: #008000;">
         <h1>Generar Reportes (Administradores)</h1>
         <p>Seleccione el tipo de reporte que desea generar.</p>
         <div class="mb-3">
@@ -128,10 +128,10 @@ $departamentos = $mysql->efectuarConsulta("SELECT id_departamento, departamento 
                         <option value="<?php echo $d['id_departamento']; ?>"><?php echo htmlspecialchars($d['departamento']); ?></option>
                     <?php endwhile; ?>
                 </select>
-                <button class="btn btn-secondary" type="submit">Generar PDF por departamento</button>
+                <button class="btn btn-secondary" type="submit" style="background-color: #007bff;">Generar PDF por departamento</button>
             </form>
         </div>
-        <a href="index.php" class="text-decoration-none btn btn-success fw-bold">Volver</a>
+        <a href="index.php" class="text-decoration-none btn fw-bold text-white" style="background-color: #007bff;">Volver</a>
     </div>
 </body>
 </html>

@@ -36,8 +36,8 @@ fetch("/PRIMER_PROYECTO_1/dashboard.php")
           {
             label: "Empleados por Cargo",
             data: valoresCargo,
-            backgroundColor: "rgba(99, 255, 132, 0.3)",
-            borderColor: "rgba(99, 255, 132, 1)",
+            backgroundColor: "rgba(255, 193, 99, 0.3)",
+            borderColor: "rgba(217, 255, 4, 1)",
             borderWidth: 1,
           },
         ],

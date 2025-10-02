@@ -41,10 +41,10 @@ $resultado = $mysql->efectuarConsulta($sql);
     <link rel="stylesheet" href="./assets/css/bootstrap.min.css" />
 </head>
 <body>
-    <div class="container-fluid mt-5">
+    <div class="container-fluid mt-5" style="background-color: #008000;">
         <div class="row">
             <div class="col-12">
-                <h1 class="text-center mb-4">Gestión de Roles de Usuario</h1>
+                <h1 class="text-center mb-4 text-white">Gestión de Roles de Usuario</h1>
                 
                 <?php if (isset($mensaje)): ?>
                     <div class="alert alert-<?php echo $tipo_mensaje; ?>" role="alert">
@@ -52,11 +52,11 @@ $resultado = $mysql->efectuarConsulta($sql);
                     </div>
                 <?php endif; ?>
                 
-                <div class="card">
-                    <div class="card-header">
+                <div class="card" style="width:100%; background-color: #f8f9fa; color:#212529;">
+                    <div class="card-header" style="width:100%; background-color: #f8f9fa; color:#212529;">
                         <h5>Empleados y sus Roles</h5>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" style="width:100%; background-color: #f8f9fa; color:#212529;">
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <thead>
@@ -75,7 +75,7 @@ $resultado = $mysql->efectuarConsulta($sql);
                                             <td><?php echo $fila['nombre_empleado']; ?></td>
                                             <td><?php echo $fila['documento']; ?></td>
                                             <td>
-                                                <span class="badge <?php echo $fila['rol'] == 1 ? 'bg-danger' : 'bg-secondary'; ?>">
+                                                <span class="badge <?php echo $fila['rol'] == 1?>" style="background-color: <?php echo $fila['rol'] == 1 ? '#007bff' : '#007bff'; ?>; color: white;">
                                                     <?php echo $fila['rol'] == 1 ? 'Administrador' : 'Usuario'; ?>
                                                 </span>
                                             </td>
@@ -86,7 +86,7 @@ $resultado = $mysql->efectuarConsulta($sql);
                                                         <option value="1" <?php echo $fila['rol'] == 1 ? 'selected' : ''; ?>>Administrador</option>
                                                         <option value="2" <?php echo $fila['rol'] == 2 ? 'selected' : ''; ?>>Usuario</option>
                                                     </select>
-                                                    <button type="submit" name="cambiar_rol" class="btn btn-primary btn-sm">Cambiar</button>
+                                                    <button type="submit" name="cambiar_rol" class="btn btn-sm text-white" style="background-color: #28a745;">Cambiar</button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -98,7 +98,7 @@ $resultado = $mysql->efectuarConsulta($sql);
                 </div>
                 
                 <div class="mt-4">
-                    <a href="index.php" class="btn btn-secondary">Volver al Inicio</a>
+                    <a href="index.php" class="btn btn-sm text-white" style="background-color: #007bff;">Volver al Inicio</a>
                 </div>
             </div>
         </div>

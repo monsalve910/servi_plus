@@ -40,7 +40,7 @@ $resultado = $mysql->efectuarConsulta("
                             (<?php echo esAdministrador() ? 'Administrador' : 'Usuario'; ?>)</span>
                     <?php endif; ?>
                 </div>
-                <h1 class="flex-grow-1" style="color:#212529">Datos de los Empleados</h1>
+                <h1 class="flex-grow-1 text-white">Datos de los Empleados</h1>
                 <div>
                     <a href="logout.php" class="btn btn-sm text-white" style="background-color: #dc3545;">Cerrar Sesión</a>
                 </div>

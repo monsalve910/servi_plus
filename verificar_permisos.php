@@ -27,10 +27,10 @@ function permisoBadge($cond) {
     </style>
 </head>
 <body>
-    <div class="container-fluid py-4">
+    <div class="container-fluid py-4" style="background-color: #008000;">
         <div class="row gy-3">
             <div class="col-12 col-md-6">
-                <div class="card card-contrast p-4 shadow-sm">
+                <div class="card card-contrast p-4 shadow-sm" style="width:100%; background-color: #f8f9fa; color:#212529;">
                     <h2 class="mb-1">Verificar permisos</h2>
                     <p class="muted mb-3">Información del usuario autenticado</p>
 
@@ -39,9 +39,9 @@ function permisoBadge($cond) {
                     <p class="mb-1 big"><strong>Documento:</strong> <?php echo htmlspecialchars($_SESSION['documento']); ?></p>
                     <p class="mb-0"><strong>Rol:</strong>
                         <?php if ($_SESSION['rol'] == 1): ?>
-                            <span class="badge bg-danger ms-2">Administrador</span>
+                            <span class="badge ms-2" style="background-color: #007bff;">Administrador</span>
                         <?php else: ?>
-                            <span class="badge bg-secondary ms-2">Usuario</span>
+                            <span class="badge ms-2" style="background-color: #007bff;">Usuario</span>
                         <?php endif; ?>
                     </p>
 
@@ -55,18 +55,18 @@ function permisoBadge($cond) {
                         <li><span class="perm-key">Gestionar roles</span><span class="perm-indicator"><?php echo permisoBadge(esAdministrador()); ?></span></li>
                     </ul>
 
-                    <a href="index.php" class="btn btn-light">Volver al inicio</a>
+                    <a href="index.php" class="btn btn-light text-white" style="background-color: #007bff;">Volver al inicio</a>
                     <?php if (esAdministrador()): ?>
-                        <a href="gestion_roles.php" class="btn btn-outline-light ms-2">Gestionar roles</a>
+                        <a href="gestion_roles.php" class="btn btn-light text-white" style="background-color: #007bff;">Gestionar Roles</a>
                     <?php endif; ?>
                 </div>
             </div>
 
-            <div class="col-12 col-md-6">
-                <div class="card card-contrast p-4 shadow-sm">
+            <div class="col-12 col-md-6" style="background-color: #f8f9fa; color:#212529;">
+                <div class="card card-contrast p-4 shadow-sm" style="width:100%; background-color: #f8f9fa; color:#212529;">
                     <h5 class="mb-2">Acciones disponibles</h5>
                     <?php if (esAdministrador()): ?>
-                        <div class="alert alert-dark text-light p-3">
+                        <div class="alert alert-dark text-black p-3">
                             <p class="mb-1">Como <strong>Administrador</strong> podés:</p>
                             <ul class="mb-0">
                                 <li>Agregar empleados (<a href="agregar.php">Ir</a>)</li>

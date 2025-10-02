@@ -15,18 +15,18 @@ if (!isset($_GET["id"]) || !is_numeric($_GET["id"])) {
     exit();
 }
 
-$id = (int)$_GET["id"];
+$id = $_GET["id"];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Limpiar y validar datos
-    $nombre = mysqli_real_escape_string($mysql->getConnection(), trim($_POST["nombre"]));
-    $documento = mysqli_real_escape_string($mysql->getConnection(), trim($_POST["documento"]));
+    $nombre = trim($_POST["nombre"]);
+    $documento =trim($_POST["documento"]);
     $cargo = (int)$_POST["cargo"];
     $area = (int)$_POST["area"];
-    $fecha = mysqli_real_escape_string($mysql->getConnection(), $_POST["fecha"]);
+    $fecha = $_POST["fecha"];
     $salario = (int)$_POST["salario"];
-    $correo = mysqli_real_escape_string($mysql->getConnection(), trim($_POST["correo"]));
-    $telefono = mysqli_real_escape_string($mysql->getConnection(), trim($_POST["tel"]));
+    $correo = trim($_POST["correo"]);
+    $telefono =trim($_POST["tel"]);
     $password = trim($_POST["pass"]);
     $passwordHash = password_hash($password, PASSWORD_DEFAULT);
     

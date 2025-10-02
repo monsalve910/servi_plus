@@ -57,7 +57,7 @@ if (isset($_GET['tipo']) && $_GET['tipo'] === 'general') {
 
 // Si se solicita generar PDF por departamento
 if (isset($_GET['tipo']) && $_GET['tipo'] === 'departamento' && isset($_GET['id_departamento'])) {
-    $id = intval($_GET['id_departamento']);
+    $id = $_GET['id_departamento'];
     $sql = "SELECT e.nombre_empleado, e.documento, c.cargo, d.departamento, e.salario, e.fecha_ingreso, e.estado FROM empleados e INNER JOIN cargo c ON e.cargo = c.id_cargo INNER JOIN departamento d ON e.area = d.id_departamento WHERE d.id_departamento = $id";
     $res = $mysql->efectuarConsulta($sql);
 

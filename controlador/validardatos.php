@@ -102,7 +102,7 @@ class Validador
         // Información detallada sobre qué falta en la contraseña
         $problemas = [];
         //if (!$tieneLetras) $problemas[] = "letras";
-        if (!$tieneNumeros) $problemas[] = "números";
+        //if (!$tieneNumeros) $problemas[] = "números";
         
        /*  if (!empty($problemas)) {
             return "La contraseña debe contener " . implode(" y ", $problemas) . ".";

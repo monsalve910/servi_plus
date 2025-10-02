@@ -48,19 +48,6 @@ $resultado = $mysql->efectuarConsulta("
 
             <?php
             // Mensajes de éxito o error
-            if (isset($_GET['msg'])) {
-                switch ($_GET['msg']) {
-                    case 'success':
-                        echo '<div class="alert alert-success">Empleado agregado correctamente.</div>';
-                        break;
-                    case 'actualizado':
-                        echo '<div class="alert alert-success">Empleado actualizado correctamente.</div>';
-                        break;
-                    case 'eliminado':
-                        echo '<div class="alert alert-success">Empleado eliminado correctamente.</div>';
-                        break;
-                }
-            }
 
             if (isset($_GET['error'])) {
                 switch ($_GET['error']) {
@@ -84,13 +71,12 @@ $resultado = $mysql->efectuarConsulta("
             ?>
 
             <?php if (esAdministrador()): ?>
-                <div class="btn-toolbar mb-3" role="toolbar">
-                    <div class="btn-group me-2" role="group">
+                <div class="btn-toolbar mb-3 justify-content-center">
+                    <div>
                         <a class="btn fw-bold text-white" style="background-color: #28a745;" href="./agregar.php" id="agregar-btn">Agregar</a>
-                        <a class="btn text-white fw-bold" style="background-color: #ffc107;" href="./gestion_roles.php">Gestionar Roles</a>
-                        <a class="btn text-white fw-bold" style="background-color: #007bff;" href="./verificar_permisos.php">Ver Permisos</a>
+                        <a class="btn text-white fw-bold me-2" style="background-color: #007bff;" href="./verificar_permisos.php">Ver Permisos</a>
                     </div>
-                    <div class="btn-group me-2" role="group">
+                    <div>
                         <a class="btn text-white fw-bold" style="background-color: #007bff;" href="./grafico.html">Dashboard</a>
                         <a class="btn text-white fw-bold" style="background-color: #007bff;" href="./reportes.php">Reportes</a>
                     </div>
@@ -98,7 +84,7 @@ $resultado = $mysql->efectuarConsulta("
             <?php else: ?>
                 <div class="alert alert-info">
                     <strong>Permisos limitados:</strong> Solo puedes ver la lista de empleados.
-                    <a href="./verificar_permisos.php" class="btn btn-sm btn-outline-light ms-2">Ver mis permisos</a>
+                    <a href="./verificar_permisos.php" class="btn btn-sm ms-2 text-white" style="background-color: #007bff;">Ver mis permisos</a>
                 </div>
             <?php endif; ?>
             <div class="table-responsive">
@@ -138,7 +124,7 @@ $resultado = $mysql->efectuarConsulta("
                                     <?php else: ?>
                                         <div class="alert alert-info">
                                             <strong>Permisos limitados:</strong> Solo puedes ver la lista de empleados.
-                                            <a href="./verificar_permisos.php" class="btn btn-sm btn-outline-light ms-2">Ver mis permisos</a>
+                                            <a href="./verificar_permisos.php" class="btn btn-sm btn ms-2 text-white" style="background-color: #007bff;">Ver mis permisos</a>
                                         </div>
                                     <?php endif; ?>
 

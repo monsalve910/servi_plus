@@ -28,7 +28,6 @@ if ($result && mysqli_num_rows($result) > 0) {
         $_SESSION['documento'] = $fila['documento'];
         $_SESSION['rol'] = $fila['rol'];
         $_SESSION['acceso'] = true;
-        $_SESSION['login_time'] = time();
 
         echo "ok";
     } else {

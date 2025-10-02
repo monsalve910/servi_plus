@@ -11,7 +11,7 @@ function verificarAcceso() {
     }
 }
 
-// Verificar tiempo de inactividad (opcional)
+/* // Verificar tiempo de inactividad (opcional)
 function verificarTiempoSesion($minutos = 30) {
     if (isset($_SESSION['login_time'])) {
         // Si han pasado más de $minutos minutos, cerrar sesión
@@ -25,7 +25,7 @@ function verificarTiempoSesion($minutos = 30) {
             $_SESSION['login_time'] = time();
         }
     }
-}
+} */
 
 // Verificar si el usuario es administrador
 function esAdministrador() {

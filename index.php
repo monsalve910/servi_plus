@@ -212,6 +212,11 @@ $resultado = $mysql->efectuarConsulta("
                                 confirmButtonText: 'Guardar cambios',
                                 cancelButtonText: 'Cancelar',
                                 width: '800px',
+
+                                // 🎨 colores de los botones
+                                confirmButtonColor: '#28a745', // verde (Guardar cambios)
+                                cancelButtonColor: '#dc3545', // rojo (Cancelar)
+
                                 preConfirm: () => {
                                     const form = document.querySelector('#formEditarEmpleado');
                                     const formData = new FormData(form);
@@ -234,6 +239,7 @@ $resultado = $mysql->efectuarConsulta("
                         });
                 });
             });
+
             // --- AGREGAR ---
             document.querySelector('#agregar-btn').addEventListener('click', function(e) {
                 e.preventDefault();
@@ -249,6 +255,11 @@ $resultado = $mysql->efectuarConsulta("
                             confirmButtonText: 'Guardar',
                             cancelButtonText: 'Cancelar',
                             width: '800px',
+
+                            // 🎨 Colores personalizados
+                            confirmButtonColor: '#28a745', // verde para "Guardar"
+                            cancelButtonColor: '#dc3545', // rojo para "Cancelar"
+
                             preConfirm: () => {
                                 const form = document.querySelector('form'); // tu form de agregar.php
                                 const formData = new FormData(form);

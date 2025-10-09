@@ -10,7 +10,7 @@ $mysql->conectar();
 
 $id = (int)$_GET["id"];
 
-$resultado = $mysql->efectuarConsulta("UPDATE empleados SET estado = 0 WHERE id_empleado = $id");
+$resultado = $mysql->efectuarConsulta("UPDATE empleados SET estado = 'Inactivo' WHERE id_empleado = $id");
 
 if ($resultado) {
     echo "ok";

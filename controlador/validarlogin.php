@@ -14,13 +14,19 @@ $mysql = new MySQL();
 $mysql->conectar();
 
 $documento = mysqli_real_escape_string($mysql->getConnection(), $documento);
-$sql = "SELECT id_empleado, nombre_empleado, documento, pass, rol 
+$sql = "SELECT id_empleado, nombre_empleado, documento, pass, rol, estado 
         FROM empleados 
         WHERE documento = '$documento' LIMIT 1";
 $result = $mysql->efectuarConsulta($sql);
 
 if ($result && mysqli_num_rows($result) > 0) {
     $fila = mysqli_fetch_assoc($result);
+
+    // Verificar si el empleado está activo
+    if ($fila['estado'] != 'Activo') {
+        echo "error:inactivo";
+        exit;
+    }
 
     if (!empty($fila['pass']) && password_verify($pass, $fila['pass'])) {
         $_SESSION['user_id'] = $fila['id_empleado'];

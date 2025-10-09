@@ -10,11 +10,10 @@ $resultado = $mysql->efectuarConsulta("
     SELECT e.id_empleado, e.nombre_empleado, e.documento, 
            c.cargo AS cargos, d.departamento AS areas, 
            e.fecha_ingreso, e.salario, e.correo, e.telefono, 
-           e.foto_empleado 
+           e.foto_empleado,e.estado
     FROM empleados e 
     INNER JOIN cargo c ON e.cargo = c.id_cargo 
-    INNER JOIN departamento d ON e.area = d.id_departamento 
-    WHERE e.estado = 1
+    INNER JOIN departamento d ON e.area = d.id_departamento;
 ");
 ?>
 <!DOCTYPE html>
@@ -73,7 +72,7 @@ $resultado = $mysql->efectuarConsulta("
             <?php if (esAdministrador()): ?>
                 <div class="btn-toolbar mb-3 justify-content-center">
                     <div>
-                        <a class="btn fw-bold text-white" style="background-color: #28a745;" href="./agregar.php" id="agregar-btn">Agregar</a>
+                        <button class="btn fw-bold text-white" style="background-color: #28a745;" id="btnAgregar">Agregar</button>
                         <a class="btn text-white fw-bold me-2" style="background-color: #007bff;" href="./verificar_permisos.php">Ver Permisos</a>
                     </div>
                     <div>
@@ -84,14 +83,12 @@ $resultado = $mysql->efectuarConsulta("
             <?php else: ?>
                 <div class="alert alert-info">
                     <strong>Permisos limitados:</strong> Solo puedes ver la lista de empleados.
-                    <a href="./verificar_permisos.php" class="btn btn-sm ms-2 text-white" style="background-color: #007bff;">Ver mis permisos</a>
                 </div>
             <?php endif; ?>
             <div class="table-responsive">
                 <table id="tablaEmpleados" class="table table-hover text-center display nowrap responsive" style="width:100%; background-color: #f8f9fa; color:#212529;">
                     <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Nombre Empleado</th>
                             <th>Documento</th>
                             <th>Cargo</th>
@@ -101,13 +98,13 @@ $resultado = $mysql->efectuarConsulta("
                             <th>Correo</th>
                             <th>Teléfono</th>
                             <th>Foto</th>
+                            <th>Estado</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php while ($fila = $resultado->fetch_assoc()): ?>
                             <tr data-id="<?php echo $fila['id_empleado']; ?>">
-                                <td><?= $fila['id_empleado'] ?></td>
                                 <td><?= $fila['nombre_empleado'] ?></td>
                                 <td><?= $fila['documento'] ?></td>
                                 <td><?= $fila['cargos'] ?></td>
@@ -116,7 +113,8 @@ $resultado = $mysql->efectuarConsulta("
                                 <td><?= $fila['salario'] ?></td>
                                 <td><?= $fila['correo'] ?></td>
                                 <td><?= $fila['telefono'] ?></td>
-                                <td><img src="./assets/fotos_empleados/<?= $fila['foto_empleado'] ?>" width="70" class="img-thumbnail"></td>
+                                <td><img src="./ASSETS/fotos_empleados/<?= $fila['foto_empleado']?>" width="70" class="img-thumbnail"></td>
+                                <td><?= $fila['estado'] ?></td>
                                 <td>
                                     <?php if (esAdministrador()): ?>
                                         <a href="./editar.php?id=<?= $fila['id_empleado'] ?>" class="btn btn-sm text-white fw-bold editar-btn" style="background-color: #28a745;">Editar</a>
@@ -124,7 +122,6 @@ $resultado = $mysql->efectuarConsulta("
                                     <?php else: ?>
                                         <div class="alert alert-info">
                                             <strong>Permisos limitados:</strong> Solo puedes ver la lista de empleados.
-                                            <a href="./verificar_permisos.php" class="btn btn-sm btn ms-2 text-white" style="background-color: #007bff;">Ver mis permisos</a>
                                         </div>
                                     <?php endif; ?>
 
@@ -135,147 +132,11 @@ $resultado = $mysql->efectuarConsulta("
                 </table>
             </div>
         </div>
-
+        <script src="./public/JS/gestion_empleados.js"></script>
         <script src="./assets/js/bootstrap.bundle.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-
-        <script>
-            $(document).ready(function() {
-                $('#tablaEmpleados').DataTable({
-                    dom: 'Bfrtip',
-                    pageLength: 10,
-                    responsive: true,
-                    language: {
-                        url: "//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json"
-                    }
-                });
-            });
-
-            // --- ELIMINAR ---
-            document.querySelectorAll('.eliminar-btn').forEach(b => {
-                b.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const href = this.getAttribute('href');
-                    Swal.fire({
-                        title: '¿Estás seguro?',
-                        text: "¡No podrás revertir esta acción!",
-                        icon: 'warning',
-                        showCancelButton: true,
-                        confirmButtonColor: '#d33',
-                        cancelButtonColor: '#3085d6',
-                        confirmButtonText: 'Sí, eliminar',
-                        cancelButtonText: 'Cancelar'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            fetch(href)
-                                .then(r => r.text())
-                                .then(res => {
-                                    Swal.fire('Eliminado', 'El empleado fue eliminado.', 'success')
-                                        .then(() => location.reload());
-                                })
-                                .catch(() => {
-                                    Swal.fire('Error', 'No se pudo eliminar el empleado.', 'error');
-                                });
-                        }
-                    });
-                });
-            });
-
-            // --- EDITAR ---
-            document.querySelectorAll('.editar-btn').forEach(b => {
-                b.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const href = this.getAttribute('href');
-
-                    fetch(href)
-                        .then(response => response.text())
-                        .then(html => {
-                            Swal.fire({
-                                title: 'Editar Empleado',
-                                html: html,
-                                showCancelButton: true,
-                                confirmButtonText: 'Guardar cambios',
-                                cancelButtonText: 'Cancelar',
-                                width: '800px',
-
-                                // 🎨 colores de los botones
-                                confirmButtonColor: '#28a745', // verde (Guardar cambios)
-                                cancelButtonColor: '#dc3545', // rojo (Cancelar)
-
-                                preConfirm: () => {
-                                    const form = document.querySelector('#formEditarEmpleado');
-                                    const formData = new FormData(form);
-
-                                    return fetch(href, {
-                                            method: 'POST',
-                                            body: formData
-                                        })
-                                        .then(r => r.text())
-                                        .then(data => {
-                                            if (data === "ok") {
-                                                Swal.fire('Actualizado', 'Empleado actualizado con éxito', 'success')
-                                                    .then(() => location.reload());
-                                            } else {
-                                                Swal.showValidationMessage('Error al actualizar');
-                                            }
-                                        });
-                                }
-                            });
-                        });
-                });
-            });
-
-            // --- AGREGAR ---
-            document.querySelector('#agregar-btn').addEventListener('click', function(e) {
-                e.preventDefault();
-                const href = this.getAttribute('href');
-
-                fetch(href)
-                    .then(response => response.text())
-                    .then(html => {
-                        Swal.fire({
-                            title: 'Agregar Empleado',
-                            html: html,
-                            showCancelButton: true,
-                            confirmButtonText: 'Guardar',
-                            cancelButtonText: 'Cancelar',
-                            width: '800px',
-
-                            // 🎨 Colores personalizados
-                            confirmButtonColor: '#28a745', // verde para "Guardar"
-                            cancelButtonColor: '#dc3545', // rojo para "Cancelar"
-
-                            preConfirm: () => {
-                                const form = document.querySelector('form'); // tu form de agregar.php
-                                const formData = new FormData(form);
-
-                                return fetch(href, {
-                                        method: 'POST',
-                                        body: formData
-                                    })
-                                    .then(r => r.text())
-                                    .then(data => {
-                                        if (data.trim() === "ok") {
-                                            Swal.fire({
-                                                icon: 'success',
-                                                title: 'Empleado agregado',
-                                                text: 'El empleado fue registrado correctamente',
-                                                timer: 2000,
-                                                showConfirmButton: false
-                                            }).then(() => location.reload());
-                                        } else {
-                                            Swal.showValidationMessage('Error: ' + data);
-                                        }
-                                    })
-                                    .catch(() => {
-                                        Swal.showValidationMessage('Error en el servidor');
-                                    });
-                            }
-                        });
-                    });
-            });
-        </script>
+        
 </body>
 
 </html>

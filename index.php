@@ -86,7 +86,7 @@ $resultado = $mysql->efectuarConsulta("
                                 <td><?= $fila['salario'] ?></td>
                                 <td><?= $fila['correo'] ?></td>
                                 <td><?= $fila['telefono'] ?></td>
-                                <td><img src="./ASSETS/fotos_empleados/<?= $fila['foto_empleado'] ?>" width="70" class="img-thumbnail"></td>
+                                <td><img src="./assets/fotos_empleados/<?= $fila['foto_empleado'] ?>" width="70" class="img-thumbnail"></td>
                                 <td><?= $fila['estado'] ?></td>
                                 <td>
                                     <?php if (esAdministrador()): ?>

@@ -1,30 +1,28 @@
 <?php
 header('Content-Type: application/json');
+// Incluir sesión y control de acceso
+require_once './controlador/sesion.php';
+verificarAcceso();
+requerirAdmin();
 
-try {
-    // Incluir sesión y control de acceso
-    require_once './controlador/sesion.php';
-    verificarAcceso();
-    requerirAdmin();
+// Conectar base de datos
+require_once './modelo/MYSQL.php';
+$mysql = new MySQL();
+$mysql->conectar();
 
-    // Conectar base de datos
-    require_once './modelo/MYSQL.php';
-    $mysql = new MySQL();
-    $mysql->conectar();
-
-    if ($_SERVER["REQUEST_METHOD"] === "POST") {
-
-        // Validar que todos los campos obligatorios estén presentes
-        $campos = ["nombre","documento","cargo","area","fecha","salario","correo","pass","rol"];
-        foreach ($campos as $campo) {
-            if (!isset($_POST[$campo]) || empty(trim($_POST[$campo]))) {
-                echo json_encode([
-                    "success" => false,
-                    "message" => "El campo $campo es obligatorio"
-                ]);
-                exit();
-            }
-        }
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if (
+        isset($_POST["nombre"]) && !empty($_POST["nombre"])
+        &&  isset($_POST["documento"]) && !empty($_POST["documento"])
+        &&  isset($_POST["cargo"]) && !empty($_POST["cargo"])
+        &&  isset($_POST["area"]) && !empty($_POST["area"])
+        &&  isset($_POST["fecha"]) && !empty($_POST["fecha"])
+        &&  isset($_POST["salario"]) && !empty($_POST["salario"])
+        &&  isset($_POST["correo"]) && !empty($_POST["correo"])
+        &&  isset($_POST["tel"]) && !empty($_POST["tel"])
+        &&  isset($_POST["pass"]) && !empty($_POST["pass"])
+        &&  isset($_POST["rol"]) && !empty($_POST["rol"])
+    ) {
 
         // Sanitización de los datos
         $nombre = filter_var(trim($_POST["nombre"]), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -40,25 +38,37 @@ try {
 
         // Validar documento numérico
         if (!ctype_digit($documento)) {
-            echo json_encode(["success"=>false,"message"=>"Documento inválido"]);
+            echo json_encode([
+                "success" => false,
+                "message" => "Documento inválido"
+            ]);
             exit();
         }
 
         // Verificar duplicados en documento
         $docDup = $mysql->efectuarConsulta("SELECT 1 FROM empleados WHERE documento = '$documento'");
         if (mysqli_num_rows($docDup) > 0) {
-            echo json_encode(["success"=>false,"message"=>"El documento ya está registrado"]);
+            echo json_encode([
+                "success" => false,
+                "message" => "El documento ya está registrado"
+            ]);
             exit();
         }
 
         // Validar correo
         if (!filter_var($correo, FILTER_VALIDATE_EMAIL)) {
-            echo json_encode(["success"=>false,"message"=>"Correo inválido"]);
+            echo json_encode([
+                "success" => false,
+                "message" => "Correo inválido"
+            ]);
             exit();
         }
         $correoDup = $mysql->efectuarConsulta("SELECT 1 FROM empleados WHERE correo = '$correo'");
         if (mysqli_num_rows($correoDup) > 0) {
-            echo json_encode(["success"=>false,"message"=>"El correo ya está registrado"]);
+            echo json_encode([
+                "success" => false,
+                "message" => "El correo ya está registrado"
+            ]);
             exit();
         }
 
@@ -67,13 +77,16 @@ try {
 
         // Subida de imagen
         if (isset($_FILES['foto']) && $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
-            $permitidos = ['image/jpg','image/jpeg','image/png'];
+            $permitidos = ['image/jpg', 'image/jpeg', 'image/png'];
             $info = finfo_open(FILEINFO_MIME_TYPE);
             $tipoArchivo = finfo_file($info, $_FILES['foto']['tmp_name']);
             finfo_close($info);
 
             if (!in_array($tipoArchivo, $permitidos)) {
-                echo json_encode(["success"=>false,"message"=>"Tipo de archivo no válido"]);
+                echo json_encode([
+                    "success" => false,
+                    "message" => "Tipo de archivo no válido"
+                ]);
                 exit();
             }
 
@@ -86,7 +99,10 @@ try {
             $destino = $carpeta . $nombreFoto;
 
             if (!move_uploaded_file($_FILES['foto']['tmp_name'], $destino)) {
-                echo json_encode(["success"=>false,"message"=>"Error al guardar la imagen"]);
+                echo json_encode([
+                    "success" => false,
+                    "message" => "Error al guardar la imagen"
+                ]);
                 exit();
             }
         }
@@ -100,21 +116,18 @@ try {
         ");
 
         if ($consulta) {
-            echo json_encode(["success"=>true,"message"=>"Empleado agregado exitosamente"]);
+            echo json_encode([
+                "success" => true,
+                "message" => "Empleado agregado exitosamente"
+            ]);
         } else {
-            echo json_encode(["success"=>false,"message"=>"Error al agregar empleado"]);
+            echo json_encode([
+                "success" => false,
+                "message" => "Error al agregar empleado"
+            ]);
         }
+
 
         $mysql->desconectar();
     }
-
-} catch (Throwable $e) {
-    echo json_encode([
-        "success" => false,
-        "message" => "Error del servidor: " . $e->getMessage()
-    ]);
-    exit;
 }
-?>
-
-

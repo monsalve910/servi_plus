@@ -45,37 +45,10 @@ $resultado = $mysql->efectuarConsulta("
                 </div>
             </div>
 
-            <?php
-            // Mensajes de éxito o error
-
-            if (isset($_GET['error'])) {
-                switch ($_GET['error']) {
-                    case 'acceso_denegado':
-                        echo '<div class="alert alert-danger">Acceso denegado. Solo los administradores pueden realizar esta acción.</div>';
-                        break;
-                    case 'id_invalido':
-                        echo '<div class="alert alert-danger">ID de empleado inválido.</div>';
-                        break;
-                    case 'eliminar_fallido':
-                        echo '<div class="alert alert-danger">Error al eliminar el empleado.</div>';
-                        break;
-                    case 'actualizar_fallido':
-                        echo '<div class="alert alert-danger">Error al actualizar el empleado.</div>';
-                        break;
-                    case 'empleado_no_encontrado':
-                        echo '<div class="alert alert-danger">Empleado no encontrado.</div>';
-                        break;
-                }
-            }
-            ?>
-
             <?php if (esAdministrador()): ?>
                 <div class="btn-toolbar mb-3 justify-content-center">
                     <div>
                         <button class="btn fw-bold text-white" style="background-color: #28a745;" id="btnAgregar">Agregar</button>
-                        <a class="btn text-white fw-bold me-2" style="background-color: #007bff;" href="./verificar_permisos.php">Ver Permisos</a>
-                    </div>
-                    <div>
                         <a class="btn text-white fw-bold" style="background-color: #007bff;" href="./grafico.html">Dashboard</a>
                         <a class="btn text-white fw-bold" style="background-color: #007bff;" href="./reportes.php">Reportes</a>
                     </div>
@@ -113,12 +86,34 @@ $resultado = $mysql->efectuarConsulta("
                                 <td><?= $fila['salario'] ?></td>
                                 <td><?= $fila['correo'] ?></td>
                                 <td><?= $fila['telefono'] ?></td>
-                                <td><img src="./ASSETS/fotos_empleados/<?= $fila['foto_empleado']?>" width="70" class="img-thumbnail"></td>
+                                <td><img src="./ASSETS/fotos_empleados/<?= $fila['foto_empleado'] ?>" width="70" class="img-thumbnail"></td>
                                 <td><?= $fila['estado'] ?></td>
                                 <td>
                                     <?php if (esAdministrador()): ?>
-                                        <a href="./editar.php?id=<?= $fila['id_empleado'] ?>" class="btn btn-sm text-white fw-bold editar-btn" style="background-color: #28a745;">Editar</a>
-                                        <a href="./eliminar.php?id=<?= $fila['id_empleado'] ?>" class="btn btn-sm text-white fw-bold eliminar-btn" style="background-color: #dc3545;">Eliminar</a>
+                                        <?php if ($fila["estado"] == "Activo"): ?>
+                                            <button
+                                                class="btn btn-sm text-white fw-bold editar-btn"
+                                                style="background-color: #28a745;"
+                                                onclick="editarEmpleado(<?php echo $fila['id_empleado']; ?>)">
+                                                Editar
+                                            </button>
+
+                                            <button
+                                                class="btn btn-sm text-white fw-bold eliminar-btn"
+                                                style="background-color: #dc3545;"
+                                                onclick="eliminarEmpleado(<?php echo $fila['id_empleado']; ?>, '<?php echo $fila['estado']; ?>')"
+                                                data-id="<?php echo $fila['id_empleado']; ?>">
+                                                Eliminar
+                                            </button>
+                                        <?php else: ?>
+                                            <button
+                                                class="btn btn-sm text-white fw-bold reintegrar-btn"
+                                                style="background-color: #ffc107;"
+                                                onclick="reintegrarEmpleado(<?php echo $fila['id_empleado']; ?>, '<?php echo $fila['estado']; ?>')"
+                                                data-id="<?php echo $fila['id_empleado']; ?>">
+                                                Reintegrar
+                                            </button>
+                                        <?php endif; ?>
                                     <?php else: ?>
                                         <div class="alert alert-info">
                                             <strong>Permisos limitados:</strong> Solo puedes ver la lista de empleados.
@@ -132,11 +127,11 @@ $resultado = $mysql->efectuarConsulta("
                 </table>
             </div>
         </div>
-        <script src="./public/JS/gestion_empleados.js"></script>
-        <script src="./assets/js/bootstrap.bundle.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="./assets/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-        
+        <script src="./public/JS/gestion_empleados.js"></script>
+
 </body>
 
 </html>

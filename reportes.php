@@ -17,7 +17,7 @@ $mysql->conectar();
 
 // Si se solicita generar PDF general
 if (isset($_GET['tipo']) && $_GET['tipo'] === 'general') {
-    $sql = "SELECT e.nombre_empleado, e.documento, c.cargo, d.departamento, e.salario, e.fecha_ingreso, e.estado FROM empleados e INNER JOIN cargo c ON e.cargo = c.id_cargo INNER JOIN departamento d ON e.area = d.id_departamento WHERE e.estado = 1";
+    $sql = "SELECT e.nombre_empleado, e.documento, c.cargo, d.departamento, e.salario, e.fecha_ingreso, e.estado FROM empleados e INNER JOIN cargo c ON e.cargo = c.id_cargo INNER JOIN departamento d ON e.area = d.id_departamento WHERE e.estado = 'Activo'";
     $res = $mysql->efectuarConsulta($sql);
 
     $pdf = new FPDF('L','mm','A4');

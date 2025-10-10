@@ -2,8 +2,8 @@
 session_start();
 require_once '../modelo/MYSQL.php';
 
-$documento = trim($_POST['documento'] ?? '');
-$pass = $_POST['pass'] ?? '';
+$documento = trim($_POST['documento']);
+$pass = $_POST['pass'];
 
 if (empty($documento) || empty($pass)) {
     echo "error:campos_vacios";

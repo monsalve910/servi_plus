@@ -1,6 +1,6 @@
 <?php
 
-// Funcion para ejecutar el cambio de estado de un usuario
+// Funcion para ejecutar el cambio de estado de un empleado
 // Ya sea para eliminar (INACTIVO) o Reintegrar(ACTIVO)
 function cambiarEstado($id, $estado)
 {

@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $cargo = filter_var(trim($_POST["cargo"]), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $area = filter_var(trim($_POST["area"]), FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $fecha = trim($_POST["fecha"]);
-        $salario = filter_var(trim($_POST["salario"]), FILTER_VALIDATE_FLOAT);
+        $salario = filter_var(trim($_POST["salario"]), FILTER_SANITIZE_NUMBER_FLOAT);
         $correo = filter_var(trim($_POST["correo"]), FILTER_SANITIZE_EMAIL);
         $telefono = !empty($_POST["tel"]) ? filter_var(trim($_POST["tel"]), FILTER_SANITIZE_NUMBER_INT) : null;
         $password = trim($_POST["pass"]);
@@ -41,6 +41,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             echo json_encode([
                 "success" => false,
                 "message" => "Documento inválido"
+            ]);
+            exit();
+        }
+         if (!filter_var($salario, FILTER_VALIDATE_FLOAT)) {
+            echo json_encode([
+                "success" => false,
+                "message" => "Salario inválido"
             ]);
             exit();
         }

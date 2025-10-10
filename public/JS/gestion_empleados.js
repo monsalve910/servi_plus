@@ -46,8 +46,11 @@ btnCrear.addEventListener("click", () => {
         <label for="foto" class="form-label">Foto</label>
         <input type="file" class="form-control" id="foto" name="foto">
 
-        <label for="rol" class="form-label">Rol</label>
-        <input type="number" class="form-control" id="rol" name="rol" required>
+        <label for="cargo" class="form-label">rol</label>
+        <select class="form-select" id="rol" name="rol" required>
+            <option value="1">Administrador</option>
+            <option value="2">Usuario</option>
+        </select>
     </div>
 </form>`,
     showCancelButton: true,
@@ -167,10 +170,11 @@ function editarEmpleado(IDuser) {
               <label for="foto" class="form-label fw-bold mt-2">Foto:</label>
               <input type="file" class="form-control" id="foto" name="foto">
 
-              <label for="rol" class="form-label fw-bold mt-2">Rol:</label>
-              <input type="number" class="form-control" id="rol" name="rol" value="${
-                data.rol
-              }" required>
+              <label for="rol" class="form-label">Rol</label>
+              <select class="form-select" id="rol" name="rol" required>
+              <option value="1" ${data.rol == 1 ? "selected" : ""}>Administrador</option>
+              <option value="2" ${data.rol == 2 ? "selected" : ""}>Usuario</option>
+              </select>
 
               <input type="hidden" id="IDempleado" name="IDempleado" value="${
                 data.id_empleado

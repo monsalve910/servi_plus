@@ -59,7 +59,7 @@
         <label for="pass" class="form-label mt-3 fw-bold">Contraseña</label>
         <input type="password" id="pass" name="pass" class="form-control mb-3" placeholder="Ingresa tu Password" required>
 
-        <button type="submit" class=" w-100 py-2 text-white" style="background-color: #28a745;">Iniciar Sesión</button>
+        <button type="submit" class=" w-100 py-2 text-white" style="background-color: #008000;">Iniciar Sesión</button>
     </div>
 </form>
 

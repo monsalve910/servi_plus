@@ -43,47 +43,11 @@
 
 <body>
     <header style="background-color: #008000;">
-        <h1 class="text-center py-3 text-white">LOGIN</h1>
+        <h1 class="text-center py-3 text-white">SERVI PLUS</h1>
     </header>
     
     <div class="login-wrapper">
         <div class="container text-dark-emphasis" style="background-color: #f8f9fa;">
-            <?php 
-            if (isset($_GET['error'])) {
-                $reason = $_GET['reason'] ?? '';
-                switch ($_GET['error']) {
-                    case 1:
-                        switch ($reason) {
-                            case 'password':
-                                $mensaje = "La contraseña ingresada no coincide.";
-                                break;
-                            case 'nopass':
-                                $mensaje = "El usuario no tiene contraseña establecida.";
-                                break;
-                            case 'nodoc':
-                                $mensaje = "No se encontró ningún usuario con ese documento.";
-                                break;
-                            case 'sqlerror':
-                                $mensaje = "Error al conectar con la base de datos.";
-                                break;
-                            default:
-                                $mensaje = "Credenciales incorrectas. Intenta de nuevo.";
-                        }
-                        break;
-                    case 2:
-                        $mensaje = "Por favor, completa todos los campos.";
-                        break;
-                    case 3:
-                        $mensaje = "No tienes permiso para acceder. Inicia sesión primero.";
-                        break;
-                    default:
-                        $mensaje = "Ha ocurrido un error. Por favor intenta de nuevo.";
-                }
-            ?>
-                <div class="alert alert-danger" role="alert">
-                    <?php echo $mensaje; ?>
-                </div>
-            <?php } ?>
             <div class="row justify-content-center">
                 <div class="col-12">
                     <form id="formLogin" style="background-color: #f8f9fa;">

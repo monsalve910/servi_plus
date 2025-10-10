@@ -42,14 +42,14 @@ function cambiarEstado($id, $estado)
 
 // Si el metodo de envio es POST ejecuta la accion
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Confirmar de que ID contenga un dato valido o no vacio
+    // Confirmar de que el ID contenga un dato valido y que no este vacio
     if (isset($_POST["id_empleado"]) && !empty($_POST["id_empleado"])) {
         // Capturar el ID 
         $id = $_POST["id_empleado"];
         // Capturar el estado
         $estado = $_POST["estado"];
 
-        // Determina si se quiere eliminar o reintegrar un usuario
+        // valida si se quiere eliminar o reintegrar un usuario
         if ($estado == "Activo") {
             cambiarEstado($id, "Inactivo");
         } else {

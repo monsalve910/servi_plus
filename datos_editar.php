@@ -16,7 +16,7 @@ function seleccionarDatos($idTabla){
 }
 
 
-// Determinar si se envio el formulario por POST
+//Envio del formulario por POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["IDempleado"]) && !empty($_POST["IDempleado"])) {
         // Capturar el ID

@@ -11,22 +11,6 @@ function verificarAcceso() {
     }
 }
 
-/* // Verificar tiempo de inactividad (opcional)
-function verificarTiempoSesion($minutos = 30) {
-    if (isset($_SESSION['login_time'])) {
-        // Si han pasado más de $minutos minutos, cerrar sesión
-        if (time() - $_SESSION['login_time'] > $minutos * 60) {
-            session_unset();
-            session_destroy();
-            header("Location: ./login.php?error=4");
-            exit;
-        } else {
-            // Actualizar el tiempo de la última actividad
-            $_SESSION['login_time'] = time();
-        }
-    }
-} */
-
 // Verificar si el usuario es administrador
 function esAdministrador() {
     return isset($_SESSION['rol']) && $_SESSION['rol'] == 1;

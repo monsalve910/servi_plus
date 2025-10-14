@@ -95,13 +95,8 @@ document.querySelector('#formLogin').addEventListener('submit', function(e) {
             Swal.fire('Atención', 'Completa todos los campos', 'warning');
         } else if (resp === "error:inactivo") {
             Swal.fire('Acceso Denegado', 'Tu cuenta está inactiva. Contacta al administrador.', 'error');
-        } else {
-            Swal.fire('Error', 'Error desconocido: ' + resp, 'error');
         }
     })
-    .catch(() => {
-        Swal.fire('Error', 'No se pudo conectar con el servidor', 'error');
-    });
 });
 </script>
 

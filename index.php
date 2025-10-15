@@ -49,7 +49,7 @@ $resultado = $mysql->efectuarConsulta("
                 <div class="btn-toolbar mb-3 justify-content-center">
                     <div>
                         <button class="btn fw-bold text-white" style="background-color: #28a745;" id="btnAgregar">Agregar</button>
-                        <a class="btn text-white fw-bold" style="background-color: #007bff;" href="./grafico.html">Dashboard</a>
+                        <a class="btn text-white fw-bold" style="background-color: #007bff;" href="./grafico.html">Graficos</a>
                         <a class="btn text-white fw-bold" style="background-color: #007bff;" href="./reportes.php">Reportes</a>
                     </div>
                 </div>

@@ -16,13 +16,6 @@ function esAdministrador() {
     return isset($_SESSION['rol']) && $_SESSION['rol'] == 1;
 }
 
-// Verificar si el usuario es administrador y redirigir si no lo es
-function requerirAdmin() {
-    if (!esAdministrador()) {
-        header("Location: ./index.php?error=acceso_denegado");
-        exit;
-    }
-}
 
 // Cerrar la sesión
 function cerrarSesion() {

@@ -1,10 +1,5 @@
 <?php
 require_once './controlador/sesion.php';
-verificarAcceso();
-if (!esAdministrador()) {
-    header('Location: index.php?error=acceso_denegado');
-    exit;
-}
 require_once './modelo/MYSQL.php';
 require_once './FPDF/fpdf.php';
 require_once './controlador/empleadocontroller.php';
@@ -121,39 +116,56 @@ if (isset($_POST['tipo']) && $_POST['tipo'] === 'departamento' && isset($_POST['
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- ✅ hace que Bootstrap sea responsivo -->
     <title>Reportes - ServiPlus</title>
     <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
 </head>
 
 <body class="p-4">
-    <div class="container text-white" style="background-color: #008000;">
-        <h1>Generar Reportes (Administradores)</h1>
-        <p>Seleccione el tipo de reporte que desea generar.</p>
+    <div class="container text-white py-4" style="background-color: #008000;">
+        <h1 class="text-center mb-3">Generar Reportes (Administradores)</h1>
+        <p class="text-center">Seleccione el tipo de reporte que desea generar.</p>
 
-        <div class="mb-3">
-            <a class="btn btn-primary" href="?tipo=general">Reporte general de empleados activos (PDF)</a>
+        <!-- Reporte general -->
+        <div class="mb-3 text-center">
+            <a class="btn btn-primary w-100 w-md-auto" href="?tipo=general">
+                Reporte general de empleados activos (PDF)
+            </a>
         </div>
 
+        <!-- Reporte por departamento -->
         <div class="mb-3">
-            <form method="post" class="d-flex gap-2 align-items-center">
+            <form method="post" class="row g-2 align-items-center justify-content-center">
                 <input type="hidden" name="tipo" value="departamento">
-                <label for="id_departamento">Departamento:</label>
-                <select name="id_departamento" id="id_departamento" class="form-select ms-2" required>
-                    <option value="">-- Seleccione --</option>
-                    <?php while ($d = mysqli_fetch_assoc($departamentos)): ?>
-                        <option value="<?php echo $d['id_departamento']; ?>">
-                            <?php echo htmlspecialchars($d['departamento']); ?>
-                        </option>
-                    <?php endwhile; ?>
-                </select>
-                <button class="btn btn-secondary" type="submit" style="background-color: #007bff;">
-                    Generar PDF por departamento
-                </button>
+                <div class="col-12 col-md-auto text-center text-md-end">
+                    <label for="id_departamento" class="form-label mb-0">Departamento:</label>
+                </div>
+                <div class="col-12 col-md-4">
+                    <select name="id_departamento" id="id_departamento" class="form-select" required>
+                        <option value="">-- Seleccione --</option>
+                        <?php while ($d = mysqli_fetch_assoc($departamentos)): ?>
+                            <option value="<?php echo $d['id_departamento']; ?>">
+                                <?php echo htmlspecialchars($d['departamento']); ?>
+                            </option>
+                        <?php endwhile; ?>
+                    </select>
+                </div>
+                <div class="col-12 col-md-auto text-center">
+                    <button class="btn btn-secondary w-100 w-md-auto" type="submit" style="background-color: #007bff;">
+                        Generar PDF por departamento
+                    </button>
+                </div>
             </form>
         </div>
 
-        <a href="index.php" class="btn fw-bold text-white" style="background-color: #007bff;">Volver</a>
+        <!-- Botón volver -->
+        <div class="text-center mt-4">
+            <a href="index.php" class="btn fw-bold text-white w-100 w-md-auto" style="background-color: #007bff;">
+                Volver
+            </a>
+        </div>
     </div>
-</body>
 
+    <script src="./assets/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>

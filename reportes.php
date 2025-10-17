@@ -1,5 +1,10 @@
 <?php
 require_once './controlador/sesion.php';
+verificarAcceso();
+if (!esAdministrador()) {
+    header('Location: index.php?error=acceso_denegado');
+    exit;
+}
 require_once './modelo/MYSQL.php';
 require_once './FPDF/fpdf.php';
 require_once './controlador/empleadocontroller.php';
@@ -79,7 +84,7 @@ if (isset($_POST['tipo']) && $_POST['tipo'] === 'departamento' && isset($_POST['
         }
     }
 
-     $pdf = new PDF();
+    $pdf = new PDF();
     $pdf->AddPage('L');
     $pdf->SetFont('Arial', 'B', 12);
 
@@ -116,9 +121,10 @@ if (isset($_POST['tipo']) && $_POST['tipo'] === 'departamento' && isset($_POST['
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1"> <!-- ✅ hace que Bootstrap sea responsivo -->
     <title>Reportes - ServiPlus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/reportes.css">
 </head>
 
 <body class="p-4">
@@ -126,20 +132,20 @@ if (isset($_POST['tipo']) && $_POST['tipo'] === 'departamento' && isset($_POST['
         <h1 class="text-center mb-3">Generar Reportes (Administradores)</h1>
         <p class="text-center">Seleccione el tipo de reporte que desea generar.</p>
 
-        <!-- Reporte general -->
         <div class="mb-3 text-center">
-            <a class="btn btn-primary w-100 w-md-auto" href="?tipo=general">
+            <a class="btn btn-primary btn-custom" href="?tipo=general">
                 Reporte general de empleados activos (PDF)
             </a>
         </div>
 
-        <!-- Reporte por departamento -->
         <div class="mb-3">
-            <form method="post" class="row g-2 align-items-center justify-content-center">
+            <form method="post" class="row g-2 align-items-center justify-content-center text-center text-md-start">
                 <input type="hidden" name="tipo" value="departamento">
-                <div class="col-12 col-md-auto text-center text-md-end">
+
+                <div class="col-12 col-md-auto">
                     <label for="id_departamento" class="form-label mb-0">Departamento:</label>
                 </div>
+
                 <div class="col-12 col-md-4">
                     <select name="id_departamento" id="id_departamento" class="form-select" required>
                         <option value="">-- Seleccione --</option>
@@ -150,17 +156,17 @@ if (isset($_POST['tipo']) && $_POST['tipo'] === 'departamento' && isset($_POST['
                         <?php endwhile; ?>
                     </select>
                 </div>
-                <div class="col-12 col-md-auto text-center">
-                    <button class="btn btn-secondary w-100 w-md-auto" type="submit" style="background-color: #007bff;">
+
+                <div class="col-12 col-md-auto">
+                    <button class="btn btn-secondary btn-custom text-white" type="submit" style="background-color: #007bff;">
                         Generar PDF por departamento
                     </button>
                 </div>
             </form>
         </div>
 
-        <!-- Botón volver -->
         <div class="text-center mt-4">
-            <a href="index.php" class="btn fw-bold text-white w-100 w-md-auto" style="background-color: #007bff;">
+            <a href="index.php" class="btn fw-bold text-white btn-custom" style="background-color: #007bff;">
                 Volver
             </a>
         </div>
@@ -168,4 +174,5 @@ if (isset($_POST['tipo']) && $_POST['tipo'] === 'departamento' && isset($_POST['
 
     <script src="./assets/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

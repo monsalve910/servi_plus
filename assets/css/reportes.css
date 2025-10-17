@@ -1,0 +1,28 @@
+ /* Evita que se desborde horizontalmente */
+        body {
+            overflow-x: hidden;
+        }
+
+        /* Hace los botones más proporcionados */
+        .btn-custom {
+            min-width: 200px;
+            max-width: 350px;
+            padding: 0.6rem 1.2rem;
+            font-weight: 500;
+            border-radius: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .btn-custom {
+                width: 100%;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+                text-align: center;
+            }
+
+            .form-select {
+                width: 100% !important;
+            }
+        }

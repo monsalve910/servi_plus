@@ -23,8 +23,7 @@
     <div class="mb-3">
         <label for="documento" class="form-label fw-bold">Documento</label>
         <input type="text" class="form-control" id="documento" name="documento" 
-               placeholder="Ingresa tu Documento" required
-               pattern="[0-9]+" title="Por favor ingresa solo números">
+               placeholder="Ingresa tu Documento" required>
         <label for="pass" class="form-label mt-3 fw-bold">Contraseña</label>
         <input type="password" id="pass" name="pass" class="form-control mb-3" placeholder="Ingresa tu Password" required>
 

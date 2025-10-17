@@ -133,7 +133,7 @@ if (isset($_POST['tipo']) && $_POST['tipo'] === 'departamento' && isset($_POST['
         <p class="text-center">Seleccione el tipo de reporte que desea generar.</p>
 
         <div class="mb-3 text-center">
-            <a class="btn btn-primary btn-custom" href="?tipo=general">
+            <a class="btn btn-primary botones" href="?tipo=general">
                 Reporte general de empleados activos (PDF)
             </a>
         </div>
@@ -158,7 +158,7 @@ if (isset($_POST['tipo']) && $_POST['tipo'] === 'departamento' && isset($_POST['
                 </div>
 
                 <div class="col-12 col-md-auto">
-                    <button class="btn btn-secondary btn-custom text-white" type="submit" style="background-color: #007bff;">
+                    <button class="btn btn-secondary botones text-white" type="submit" style="background-color: #007bff;">
                         Generar PDF por departamento
                     </button>
                 </div>
@@ -166,7 +166,7 @@ if (isset($_POST['tipo']) && $_POST['tipo'] === 'departamento' && isset($_POST['
         </div>
 
         <div class="text-center mt-4">
-            <a href="index.php" class="btn fw-bold text-white btn-custom" style="background-color: #007bff;">
+            <a href="index.php" class="btn fw-bold text-white botones" style="background-color: #007bff;">
                 Volver
             </a>
         </div>

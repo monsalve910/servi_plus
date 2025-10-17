@@ -24,7 +24,7 @@ btnCrear.addEventListener("click", () => {
         <select class="form-select" id="area" name="area" required>
             <option value="1">Electricidad</option>
             <option value="2">Mantenimiento</option>
-            <option value="3">Recusrsos Humanos</option>
+            <option value="3">Recursos Humanos</option>
             <option value="4">Contabilidad</option>
         </select>
 

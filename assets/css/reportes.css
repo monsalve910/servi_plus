@@ -4,7 +4,7 @@
         }
 
         /* Hace los botones más proporcionados */
-        .btn-custom {
+        .botones {
             min-width: 200px;
             max-width: 350px;
             padding: 0.6rem 1.2rem;
@@ -12,17 +12,17 @@
             border-radius: 0.5rem;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 768px) { /*el @media son estilos que se aplican en ciertas condiciones en este caso solo se aplica si el viewport es de 768px*/
             .btn-custom {
-                width: 100%;
+                width: 100%; /*el viewport es el area visible de la pagina dentro de la pantalla del dispositivo*/
             }
-
+/*se reduce el tamaño de la fuente y se centra*/
             h1 {
                 font-size: 1.5rem;
                 text-align: center;
             }
 
             .form-select {
-                width: 100% !important;
+                width: 100% !important; /*esto hace que el select tenga todo el ancho de la pantalla del movil*/
             }
         }

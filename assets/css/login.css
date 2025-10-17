@@ -1,31 +1,31 @@
 body {
-            min-height: 100vh;
+            min-height: 100vh;/*vh significa viewport heigth entonces 100vh significa que es el 100% de la altura visible de la pantalla*/
             display: flex;
             flex-direction: column;
         }
         
         .login-wrapper {
-            flex: 1;
+            flex: 1;/*el flex 1 significa que el contenedor ocupa todo el espacio restante vertical disponible*/
             display: flex;
             align-items: center;
             padding: 20px;
         }
         
         .container {
-            max-width: 450px;
-            width: 100%;
+            max-width: 450px;/*limita el ancho del formulario*/
+            width: 100%;/*esto use todo el ancho disponible hasta llegar a 450px*/
             margin: 0 auto;
             padding: 2rem;
             border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);/*añade una sombra suave alrededor del contenedor*/
         }
         
-        @media (max-width: 576px) {
+        @media (max-width: 576px) {/*el @media son estilos que se aplican en ciertas condiciones en este caso solo se aplica si el viewport es de 576px*/
             .container {
                 padding: 1rem;
             }
             
-            .login-wrapper {
+            .login-wrapper { /*centra el formulario y ajusta su espacio*/
                 padding: 10px;
             }
         }

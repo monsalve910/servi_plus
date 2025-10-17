@@ -1,0 +1,31 @@
+ /* Evita desbordamiento horizontal */
+        body {
+            overflow-x: hidden; /*EVITA QUE EL CONTENIDO SE SOBRESALGA DE LA VENTANA*/
+        }
+
+        /*Mejora la visualización en pantallas pequeñas */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.4rem; /*REDUCE EL TAMAÑO DE LA LETRA*/
+                text-align: center;
+            }
+
+            .d-flex {
+                flex-direction: column !important;/*ESTO FUERZA A QUE LOS HIJOS DEL FLEX SE ORGANICEN VERTICALMENTE EL IMPORTANTSOBREESCRIBE OTRAS REGLAS QUE FUERZAN AL FLEX-DIRECTION*/
+                text-align: center;
+            }
+
+            .btn-toolbar {
+                flex-direction: column !important;/*HACE QUE LOS BOTONES SE ORGANICEN VERTICALMENTE*/
+            }
+
+            .table-responsive {
+                font-size: 0.9rem;/*REDUCE LIGERAMENTE EL TAMAÑO*/
+            }
+
+            .img {
+                width: 50px !important;/*FUERZA EL ANCHO DE LA IMAGEN*/
+                height: auto !important;/*MANTIENE LA PROPORCION DE LA IMAGEN SE AUTOAJUSTA*/
+            }
+        }
+        /*EL IMPORTANT LE DA UNA MAXIMA PRIORIDAD A UNA REGLA CSS OSEA APLICA ESTILO SIN IMPORTAR OTRAS REGLAS DE CSS*/

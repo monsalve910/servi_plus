@@ -6,39 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOGIN</title>
     <link rel="stylesheet" href="./assets/css/bootstrap.min.css" />
-    <style>
-        body {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .login-wrapper {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 450px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-        }
-        
-        @media (max-width: 576px) {
-            .container {
-                padding: 1rem;
-            }
-            
-            .login-wrapper {
-                padding: 10px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="./assets/css/login.css" />
+
 </head>
 
 <body>

@@ -3,7 +3,6 @@ header('Content-Type: application/json');
 // Incluir sesión y control de acceso
 require_once './controlador/sesion.php';
 verificarAcceso();
-requerirAdmin();
 
 // Conectar base de datos
 require_once './modelo/MYSQL.php';

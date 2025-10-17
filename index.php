@@ -23,43 +23,50 @@ $resultado = $mysql->efectuarConsulta("
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>"ServiPlus S.A."</title>
+
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="./assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./assets/css/index.css" />
+    <!-- DataTables -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.dataTables.min.css">
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body class="text-center">
-    <div class="container-fluid mt-5 text-white" style="background-color: #008000;">
+
+    <div class="container-fluid mt-5 text-white py-3" style="background-color: #008000;">
         <div class="row text-center">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-                <div>
+            <div class="d-flex justify-content-between align-items-center flex-wrap mb-3">
+                <div class="mb-2">
                     <?php if (isset($_SESSION['nombre'])): ?>
                         <span class="badge text-white" style="background-color: #007bff;">Usuario: <?php echo $_SESSION['nombre']; ?>
                             (<?php echo esAdministrador() ? 'Administrador' : 'Usuario'; ?>)</span>
                     <?php endif; ?>
                 </div>
-                <h1 class="flex-grow-1 text-white">Datos de los Empleados</h1>
+
+                <h1 class="flex-grow-1 text-white mb-2">Datos de los Empleados</h1>
+
                 <div>
                     <a href="logout.php" class="btn btn-sm text-white" style="background-color: #dc3545;">Cerrar Sesión</a>
                 </div>
             </div>
 
             <?php if (esAdministrador()): ?>
-                <div class="btn-toolbar mb-3 justify-content-center">
-                    <div>
-                        <button class="btn fw-bold text-white" style="background-color: #28a745;" id="btnAgregar">Agregar</button>
-                        <a class="btn text-white fw-bold" style="background-color: #007bff;" href="./grafico.html">Graficos</a>
-                        <a class="btn text-white fw-bold" style="background-color: #007bff;" href="./reportes.php">Reportes</a>
-                    </div>
+                <div class="btn-toolbar mb-3 justify-content-center flex-wrap">
+                    <button class="btn fw-bold text-white m-1" style="background-color: #28a745;" id="btnAgregar">Agregar</button>
+                    <a class="btn text-white fw-bold m-1" style="background-color: #007bff;" href="./grafico.html">Gráficos</a>
+                    <a class="btn text-white fw-bold m-1" style="background-color: #007bff;" href="./reportes.php">Reportes</a>
                 </div>
             <?php else: ?>
-                <div class="alert alert-info">
+                <div class="alert alert-info mx-2">
                     <strong>Permisos limitados:</strong> Solo puedes ver la lista de empleados.
                 </div>
             <?php endif; ?>
-            <div class="table-responsive">
-                <table id="tablaEmpleados" class="table table-hover text-center display nowrap responsive" style="width:100%; background-color: #f8f9fa; color:#212529;">
+
+            <div class="table-responsive px-2">
+                <table id="tablaEmpleados" class="table table-hover text-center display nowrap responsive w-100" style="background-color: #f8f9fa; color:#212529;">
                     <thead>
                         <tr>
                             <th>Nombre Empleado</th>
@@ -86,7 +93,7 @@ $resultado = $mysql->efectuarConsulta("
                                 <td><?= $fila['salario'] ?></td>
                                 <td><?= $fila['correo'] ?></td>
                                 <td><?= $fila['telefono'] ?></td>
-                                <td><img src="./assets/fotos_empleados/<?= $fila['foto_empleado'] ?>" width="70" class="img-thumbnail"></td>
+                                <td><img src="./assets/fotos_empleados/<?= $fila['foto_empleado'] ?>" width="70" class="img"></td>
                                 <td><?= $fila['estado'] ?></td>
                                 <td>
                                     <?php if (esAdministrador()): ?>
@@ -119,7 +126,6 @@ $resultado = $mysql->efectuarConsulta("
                                             <strong>Permisos limitados:</strong> Solo puedes ver la lista de empleados.
                                         </div>
                                     <?php endif; ?>
-
                                 </td>
                             </tr>
                         <?php endwhile; ?>
@@ -127,19 +133,22 @@ $resultado = $mysql->efectuarConsulta("
                 </table>
             </div>
         </div>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-        <script src="./assets/js/bootstrap.bundle.min.js"></script>
-        <script src="./public/JS/gestion_empleados.js"></script>
-        <script>
-            $(document).ready(function() {
-                $('#tablaEmpleados').DataTable({
-                    responsive: true,
-                    dom: 'Bfrtip',
-                });
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="./assets/js/bootstrap.bundle.min.js"></script>
+    <script src="./public/JS/gestion_empleados.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#tablaEmpleados').DataTable({
+                responsive: true,
+                dom: 'Bfrtip',
             });
-        </script>
+        });
+    </script>
 
 </body>
-
 </html>

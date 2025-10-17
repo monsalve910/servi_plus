@@ -3,7 +3,6 @@ header('Content-Type: application/json');
 // Incluir sesión y control de acceso
 require_once './controlador/sesion.php';
 verificarAcceso();
-requerirAdmin();
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (
         isset($_POST["nombre"]) && !empty($_POST["nombre"])

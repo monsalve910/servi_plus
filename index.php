@@ -69,17 +69,19 @@ $resultado = $mysql->efectuarConsulta("
                 <table id="tablaEmpleados" class="table table-hover text-center display nowrap responsive w-100" style="background-color: #f8f9fa; color:#212529;">
                     <thead>
                         <tr>
-                            <th>Nombre Empleado</th>
-                            <th>Documento</th>
-                            <th>Cargo</th>
-                            <th>Área</th>
-                            <th>Ingreso</th>
-                            <th>Salario</th>
-                            <th>Correo</th>
-                            <th>Teléfono</th>
-                            <th>Foto</th>
-                            <th>Estado</th>
-                            <th>Acciones</th>
+                            <th class="text-center">Nombre Empleado</th>
+                            <th class="text-center">Documento</th>
+                            <th class="text-center">Cargo</th>
+                            <th class="text-center">Área</th>
+                            <th class="text-center">Ingreso</th>
+                            <th class="text-center">Salario</th>
+                            <th class="text-center">Correo</th>
+                            <th class="text-center">Teléfono</th>
+                            <th class="text-center">Foto</th>
+                            <th class="text-center">Estado</th>
+                            <?php if (esAdministrador()) { ?>
+                                <th class="text-center">Acciones</th>
+                            <?php } ?>
                         </tr>
                     </thead>
                     <tbody>
@@ -95,8 +97,8 @@ $resultado = $mysql->efectuarConsulta("
                                 <td><?= $fila['telefono'] ?></td>
                                 <td><img src="./assets/fotos_empleados/<?= $fila['foto_empleado'] ?>" width="70" class="img"></td>
                                 <td><?= $fila['estado'] ?></td>
-                                <td>
-                                    <?php if (esAdministrador()): ?>
+                                <?php if (esAdministrador()) { ?>
+                                    <td>
                                         <?php if ($fila["estado"] == "Activo"): ?>
                                             <button
                                                 class="btn btn-sm text-white fw-bold editar-btn"
@@ -121,12 +123,8 @@ $resultado = $mysql->efectuarConsulta("
                                                 Reintegrar
                                             </button>
                                         <?php endif; ?>
-                                    <?php else: ?>
-                                        <div class="alert alert-info">
-                                            <strong>Permisos limitados:</strong> Solo puedes ver la lista de empleados.
-                                        </div>
-                                    <?php endif; ?>
-                                </td>
+                                    </td>
+                                <?php } ?>
                             </tr>
                         <?php endwhile; ?>
                     </tbody>
@@ -151,4 +149,5 @@ $resultado = $mysql->efectuarConsulta("
     </script>
 
 </body>
+
 </html>
